@@ -32,7 +32,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a href="{{ route('dokter.obat') }}" class="nav-link">
+        <a href="/dokter/dashboard/" class="nav-link">
             <i class="nav-icon bi bi-speedometer"></i>
             <p>
                 Obat
@@ -73,22 +73,14 @@
                                 <thead>
                                     <tr>
                                         <th>NO</th>
-                                        <th>ID Periksa</th>
                                         <th>Pasien</th>
-                                        <th>Tanggal Periksa</th>
-                                        <th>Catatan</th>
-                                        <th>Biaya Periksa</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($periksas as $periksa)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $periksa->id }}</td>
                                             <td>{{ $periksa->pasien->nama }}</td>
-                                            <td>{{ $periksa->tgl_periksa }}</td>
-                                            <td>{{ $periksa->catatan }}</td>
-                                            <td>{{ $periksa->biaya_periksa }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

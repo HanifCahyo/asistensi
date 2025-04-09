@@ -32,7 +32,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a href="{{ route('dokter.obat') }}" class="nav-link active">
+        <a href="{{ route('dokter.obat.index') }}" class="nav-link">
             <i class="nav-icon bi bi-speedometer"></i>
             <p>
                 Obat
@@ -76,22 +76,23 @@
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form>
+                            <form action="{{ route('dokter.obat.store') }}" method="POST">
+                                @csrf
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Nama Obat</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1"
-                                            placeholder="Input obat's name">
+                                        <label for="nama_obat">Nama Obat</label>
+                                        <input type="text" class="form-control" id="nama_obat" name="nama_obat"
+                                            placeholder="Input obat's name" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Kemasan</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1"
-                                            placeholder="Input kemasan's name">
+                                        <label for="kemasan">Kemasan</label>
+                                        <input type="text" class="form-control" id="kemasan" name="kemasan"
+                                            placeholder="Input kemasan's name" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Harga</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1"
-                                            placeholder="Input the price">
+                                        <label for="harga">Harga</label>
+                                        <input type="number" class="form-control" id="harga" name="harga"
+                                            placeholder="Input the price" required>
                                     </div>
                                 </div>
                                 <div class="card-footer">
@@ -124,7 +125,6 @@
                             <table class="table table-hover text-nowrap">
                                 <thead>
                                     <tr>
-                                        <th>NO</th>
                                         <th>ID Obat</th>
                                         <th>Nama Obat</th>
                                         <th>Kemasan</th>
@@ -133,39 +133,25 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>B001</td>
-                                        <td>Paracetamol</td>
-                                        <td>Dus</td>
-                                        <td>20000</td>
-                                        <td>
-                                            <button type="button" class="btn btn-warning">Edit</button>
-                                            <button type="button" class="btn btn-danger">Hapus</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>B002</td>
-                                        <td>Obat Tidur</td>
-                                        <td>Pil</td>
-                                        <td>10000</td>
-                                        <td>
-                                            <button type="button" class="btn btn-warning">Edit</button>
-                                            <button type="button" class="btn btn-danger">Hapus</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>B003</td>
-                                        <td>Actived</td>
-                                        <td>Sirup</td>
-                                        <td>50000</td>
-                                        <td>
-                                            <button type="button" class="btn btn-warning">Edit</button>
-                                            <button type="button" class="btn btn-danger">Hapus</button>
-                                        </td>
-                                    </tr>
+                                    @foreach ($obats as $obat)
+                                        <tr>
+                                            <td>{{ $obat->id }}</td>
+                                            <td>{{ $obat->nama_obat }}</td>
+                                            <td>{{ $obat->kemasan }}</td>
+                                            <td>{{ $obat->harga }}</td>
+                                            <td>
+                                                <a href="{{ route('dokter.obat.edit', $obat->id) }}"
+                                                    class="btn btn-warning">Edit</a>
+                                                <form action="{{ route('dokter.obat.destroy', $obat->id) }}" method="POST"
+                                                    style="display:inline;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger"
+                                                        onclick="return confirm('Apakah Anda yakin ingin menghapus obat ini?')">Hapus</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

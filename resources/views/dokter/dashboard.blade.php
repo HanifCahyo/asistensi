@@ -32,7 +32,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a href="{{ route('dokter.obat') }}" class="nav-link">
+        <a href="{{ route('dokter.obat.index') }}" class="nav-link">
             <i class="nav-icon bi bi-speedometer"></i>
             <p>
                 Obat

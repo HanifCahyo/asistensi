@@ -15,10 +15,12 @@ Route::get('/dokter/dashboard/', function () {
 })->name(name: 'dokter.dashboard');
 ;
 
-Route::get('/dokter/obat', function () {
-    return view('dokter.obat');
-})->name('dokter.obat');
-;
+// Route::get('/dokter/obat', function () {
+//     return view('dokter.obat');
+// })->name('dokter.obat');
+// ;
+
+Route::resource('/dokter/obat', \App\Http\Controllers\ObatController::class)->names('dokter.obat');
 
 Route::get('/dokter/periksa', function () {
     $periksas = Periksa::all();
