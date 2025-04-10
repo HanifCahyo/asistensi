@@ -16,7 +16,7 @@
 
 @section('sidebar')
     <li class="nav-item">
-        <a href="{{ route('dokter.dashboard') }}" class="nav-link ">
+        <a href="{{ route('dokter.dashboard') }}" class="nav-link">
             <i class="nav-icon bi bi-speedometer"></i>
             <p>
                 Dashboard
@@ -24,7 +24,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a href="{{ route('dokter.periksa') }}" class="nav-link">
+        <a href="{{ route('dokter.periksa.index') }}" class="nav-link">
             <i class="nav-icon bi bi-speedometer"></i>
             <p>
                 Periksa
@@ -32,7 +32,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a href="{{ route('dokter.obat.index') }}" class="nav-link">
+        <a href="{{ route('dokter.obat.index') }}" class="nav-link active">
             <i class="nav-icon bi bi-speedometer"></i>
             <p>
                 Obat

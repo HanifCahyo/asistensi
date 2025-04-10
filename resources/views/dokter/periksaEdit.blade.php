@@ -3,7 +3,7 @@
 @section('content-header')
     <div class="row">
         <div class="col-sm-6">
-            <h3 class="mb-0">Obat</h3>
+            <h3 class="mb-0">Periksa Edit</h3>
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-end">
@@ -54,34 +54,51 @@
                         <!-- general form elements -->
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">Periksa</h3>
+                                <h3 class="card-title">Periksa Edit</h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form action="{{ route('dokter.obat.update', $obat->id) }}" method="POST">
+                            <form action="{{ route('dokter.periksa.update', $periksa->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label for="nama_obat">Nama Obat</label>
-                                        <input type="text" class="form-control" id="nama_obat" name="nama_obat"
-                                            value="{{ $obat->nama_obat }}" placeholder="Input obat's name" required>
+                                        <label for="nama_pasien">Pasien</label>
+                                        <input type="text" class="form-control" id="nama_pasien" name="nama_pasien"
+                                            value="{{ $periksa->pasien->nama }}" readonly>
                                     </div>
+
                                     <div class="form-group">
-                                        <label for="kemasan">Kemasan</label>
-                                        <input type="text" class="form-control" id="kemasan" name="kemasan"
-                                            value="{{ $obat->kemasan }}" placeholder="Input kemasan's name" required>
+                                        <label for="tgl_periksa">Tanggal Periksa</label>
+                                        <input type="date" class="form-control" name="tgl_periksa"
+                                            value="{{ $periksa->tgl_periksa }}" required>
                                     </div>
+
                                     <div class="form-group">
-                                        <label for="harga">Harga</label>
-                                        <input type="number" class="form-control" id="harga" name="harga"
-                                            value="{{ $obat->harga }}" placeholder="Input the price" required>
+                                        <label for="catatan">Catatan</label>
+                                        <textarea class="form-control" name="catatan" rows="3">{{ $periksa->catatan }}</textarea>
                                     </div>
+
+                                    <div class="form-group">
+                                        <label for="obat">Obat</label>
+                                        <select name="obat[]" class="form-control" multiple>
+                                            @foreach ($obats as $obat)
+                                                <option value="{{ $obat->id }}"
+                                                    @if ($periksa->detailPeriksa->pluck('id_obat')->contains($obat->id)) selected @endif>
+                                                    {{ $obat->nama_obat }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        <small>* Tekan Ctrl (Windows) / Cmd (Mac) untuk pilih lebih dari satu</small>
+                                    </div>
+
                                 </div>
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Update Obat</button>
+                                    <button type="submit" class="btn btn-primary">Update Pemeriksaan</button>
                                 </div>
                             </form>
+
+
                         </div>
                         <!-- /.card -->
                     </div>

@@ -8,7 +8,7 @@
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-end">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                <li class="breadcrumb-item active" aria-current="page">Periksa</li>
             </ol>
         </div>
     </div>
@@ -16,7 +16,7 @@
 
 @section('sidebar')
     <li class="nav-item">
-        <a href="{{ route('pasien.dashboard') }}" class="nav-link active">
+        <a href="{{ route('pasien.dashboard') }}" class="nav-link">
             <i class="nav-icon bi bi-speedometer"></i>
             <p>
                 Dashboard
@@ -24,7 +24,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a href="{{ route('pasien.periksa') }}" class="nav-link">
+        <a href="{{ route('pasien.periksa') }}" class="nav-link active">
             <i class="nav-icon bi bi-speedometer"></i>
             <p>
                 Periksa

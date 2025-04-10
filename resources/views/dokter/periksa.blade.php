@@ -24,7 +24,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a href="{{ route('dokter.periksa') }}" class="nav-link active">
+        <a href="{{ route('dokter.periksa.index') }}" class="nav-link active">
             <i class="nav-icon bi bi-speedometer"></i>
             <p>
                 Periksa
@@ -32,7 +32,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a href="/dokter/dashboard/" class="nav-link">
+        <a href="{{ route('dokter.obat.index') }}" class="nav-link">
             <i class="nav-icon bi bi-speedometer"></i>
             <p>
                 Obat
@@ -74,6 +74,7 @@
                                     <tr>
                                         <th>NO</th>
                                         <th>Pasien</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -81,6 +82,25 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $periksa->pasien->nama }}</td>
+                                            <td>
+                                                <a href="{{ route('dokter.periksa.show', $periksa->id) }}"
+                                                    class="btn btn-info btn-sm">
+                                                    <i class="fas fa-eye"></i> Lihat
+                                                </a>
+                                                <a href="{{ route('dokter.periksa.edit', $periksa->id) }}"
+                                                    class="btn btn-warning btn-sm">
+                                                    <i class="fas fa-edit"></i> Edit
+                                                </a>
+                                                <form action="{{ route('dokter.periksa.destroy', $periksa->id) }}"
+                                                    method="POST" style="display: inline-block;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm"
+                                                        onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                                                        <i class="fas fa-trash"></i> Hapus
+                                                    </button>
+                                                </form>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
